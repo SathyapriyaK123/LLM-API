@@ -1,0 +1,137 @@
+# LLM API - Production-Ready FastAPI Server
+
+A production-ready REST API for serving Large Language Models with automatic output saving, built with FastAPI and HuggingFace Transformers.
+
+## Features
+- FastAPI server with automatic documentation
+- TinyLlama 1.1B model for text generation
+- Pydantic schemas for request/response validation
+- Automatic file saving for all outputs
+- Lifespan management for efficient model loading
+- Swagger UI for interactive testing
+
+## Technologies Used
+- **FastAPI** - Modern web framework
+- **Uvicorn** - ASGI server
+- **Transformers** - HuggingFace library for LLMs
+- **Pydantic** - Data validation
+- **PyTorch** - Deep learning framework
+
+## Project Structure
+```
+llm-api/
+├── ml_engine.py    # Model loading and inference
+├── schemas.py      # Request/response schemas
+├── main.py         # FastAPI application
+└── README.md       # Documentation
+```
+
+## Installation
+```bash
+pip install fastapi uvicorn torch transformers accelerate "fastapi[standard]"
+```
+
+## How to Run
+```bash
+fastapi dev main.py
+```
+
+Server will start at: `http://127.0.0.1:8000`
+
+## API Endpoints
+
+### Health Check
+```
+GET /
+```
+Returns server status and model info.
+
+### Generate Text
+```
+POST /generate
+```
+
+**Request Body:**
+```json
+{
+  "prompt": "Explain quantum physics in simple terms",
+  "max_tokens": 256,
+  "temperature": 0.7
+}
+```
+
+**Response:**
+```json
+{
+  "result": "Generated text here...",
+  "token_usage": 45
+}
+```
+
+## Interactive Documentation
+
+Once running, visit:
+- Swagger UI: `http://127.0.0.1:8000/docs`
+- ReDoc: `http://127.0.0.1:8000/redoc`
+
+## Code Structure
+
+### ml_engine.py
+Handles model initialization and text generation:
+- Loads TinyLlama-1.1B-Chat model once at startup
+- Formats prompts with chat template
+- Generates responses with configurable parameters
+
+### schemas.py
+Defines data validation using Pydantic:
+- `GenerationRequest` - validates incoming requests
+- `GenerationResponse` - structures API responses
+
+### main.py
+FastAPI application server:
+- Lifespan context manager for model loading
+- POST endpoint for text generation
+- Automatic output saving to timestamped files
+- Error handling with HTTP exceptions
+
+## Model Details
+
+- **Model:** TinyLlama-1.1B-Chat-v1.0
+- **Size:** 1.1 billion parameters
+- **Format:** BFloat16 (memory efficient)
+- **Device:** Auto (GPU if available, else CPU)
+
+## Output Files
+
+Generated responses are automatically saved as:
+```
+output_YYYYMMDD_HHMMSS.txt
+```
+
+Each file contains:
+- Original prompt
+- Generated response
+
+## Production Considerations
+
+This project demonstrates:
+- ✅ Proper separation of concerns (3 files)
+- ✅ Model loaded once, not per request
+- ✅ Request validation with Pydantic
+- ✅ Automatic API documentation
+- ✅ Error handling
+- ✅ Efficient resource management
+
+## Future Improvements
+
+- Add rate limiting
+- Implement caching for repeated queries
+- Add authentication/API keys
+- Support multiple models
+- Add streaming responses
+- Implement request queuing
+- Add monitoring and logging
+
+## Author
+
+Built as a learning project to understand production-ready LLM APIs.
