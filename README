@@ -120,7 +120,7 @@ This project demonstrates:
 - ✅ Request validation with Pydantic
 - ✅ Automatic API documentation
 - ✅ Error handling
-- ✅ Efficient resource management
+-  Efficient resource management
 
 ## Future Improvements
 
