@@ -118,7 +118,7 @@ This project demonstrates:
 - ✅ Proper separation of concerns (3 files)
 - ✅ Model loaded once, not per request
 - ✅ Request validation with Pydantic
-- ✅ Automatic API documentation
+-  Automatic API documentation
 -  Error handling
 -  Efficient resource management
 
