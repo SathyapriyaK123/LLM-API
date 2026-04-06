@@ -116,7 +116,7 @@ Each file contains:
 
 This project demonstrates:
 -  Proper separation of concerns (3 files)
-- ✅ Model loaded once, not per request
+-  Model loaded once, not per request
 -  Request validation with Pydantic
 -  Automatic API documentation
 -  Error handling
