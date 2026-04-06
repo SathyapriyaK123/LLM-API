@@ -119,7 +119,7 @@ This project demonstrates:
 - ✅ Model loaded once, not per request
 - ✅ Request validation with Pydantic
 - ✅ Automatic API documentation
-- ✅ Error handling
+-  Error handling
 -  Efficient resource management
 
 ## Future Improvements
